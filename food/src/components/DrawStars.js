@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
-const DrawStars = ({stars}) => {
+const DrawStars = ({stars, size, extraStyle}) => {
 
     var starCount = [
         //star, star-o, star-half-o
@@ -23,13 +23,13 @@ const DrawStars = ({stars}) => {
     }
 
     return (
-        <View style={styles.container}>
+        <View style={extraStyle}>
             <Text>
-                <FontAwesome style={styles.iconStyle} size={10} name={starCount[0]} />
-                <FontAwesome style={styles.iconStyle} size={10} name={starCount[1]} />
-                <FontAwesome style={styles.iconStyle} size={10} name={starCount[2]} />
-                <FontAwesome style={styles.iconStyle} size={10} name={starCount[3]} />
-                <FontAwesome style={styles.iconStyle} size={10} name={starCount[4]} />
+                <FontAwesome style={styles.iconStyle} size={size} name={starCount[0]} />
+                <FontAwesome style={styles.iconStyle} size={size} name={starCount[1]} />
+                <FontAwesome style={styles.iconStyle} size={size} name={starCount[2]} />
+                <FontAwesome style={styles.iconStyle} size={size} name={starCount[3]} />
+                <FontAwesome style={styles.iconStyle} size={size} name={starCount[4]} />
             </Text>   
         </View>
     );
@@ -37,7 +37,6 @@ const DrawStars = ({stars}) => {
 
 const styles = StyleSheet.create({
     iconStyle:{
-        fontSize: 18,
         alignSelf: 'center',
         marginLeft: 10,
         color: '#DAA520',

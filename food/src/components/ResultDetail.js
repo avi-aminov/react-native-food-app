@@ -14,7 +14,7 @@ const ResultDetail = ({result}) => {
             <Text style={styles.name} >{result.name.substring(0,32)}</Text>
             <Text>{result.rating} Stars, {result.review_count} Reviews</Text>
 
-            <DrawStars  stars={result.rating}/>
+            <DrawStars stars={result.rating} size={17}/>
         </View>
     );
 }; 

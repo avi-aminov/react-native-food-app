@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, FlatList, Image } from 'react-native';
 import yelp from '../api/yelp';
 
+import DrawStars from '../components/DrawStars';
 
 const ResultShowScreen = ({navigation}) => {
     const [result, setResult] = useState(null);
@@ -24,11 +25,29 @@ const ResultShowScreen = ({navigation}) => {
     if(!result){
         return null;
     }
-
-    console.log(result);
     return (
-        <View> 
-            <Text>{result.name}</Text>
+        <View style={css.container}> 
+            <Text style={css.title}>{result.name}</Text>
+
+            <View style={css.flexRow}>
+              <Text style={css.retingText} >{result.rating} </Text>
+              <DrawStars 
+                stars={result.rating}
+                size={24}
+                extraStyle={{
+                  marginLeft:10,
+                }}
+              />
+              <Text style={css.retingText}> {result.review_count} Reviews </Text>
+            </View>
+            
+
+            <View style={css.flexRow}>
+              <Text style={css.retingText}>{result.price},</Text>
+              <Text style={css.retingText}> Categories: {result.categories[0].title}</Text>
+            </View>
+
+
             <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
@@ -36,7 +55,7 @@ const ResultShowScreen = ({navigation}) => {
                 keyExtractor={(photo)=>photo}
                 renderItem={({item})=>{ 
                     return (
-                        <Image source={{uri: item}} style={styles.image}/>
+                        <Image source={{uri: item}} style={css.image}/>
                         
                     );
                 }}
@@ -45,12 +64,34 @@ const ResultShowScreen = ({navigation}) => {
     );
 }; 
 
-const styles = StyleSheet.create({
-    image:{
-        height:200,
-        width:300,
-        margin:5,
-    }
+const css = StyleSheet.create({
+  container:{
+    flex:1,
+  },
+  flexRow: {
+    display: 'flex',
+    flexDirection: "row",
+    marginHorizontal:10,
+    marginBottom:10,
+  },
+  retingText:{
+    fontSize: 20,
+  },
+  image:{
+      height:200,
+      width:300,
+      margin:5,
+  },
+  title: {
+    marginVertical:10,
+    marginHorizontal:10,
+    fontSize:20,
+    fontWeight: 'bold',
+  },
+  stars:{
+    marginLeft:15,
+  }
+
 });
 
 export default ResultShowScreen; 
