@@ -38,7 +38,6 @@ const DrawStars = ({stars, size, extraStyle}) => {
 const styles = StyleSheet.create({
     iconStyle:{
         alignSelf: 'center',
-        marginLeft: 10,
         color: '#DAA520',
     }
 });

@@ -16,7 +16,7 @@ export default ()=>{
                 }
             });
             setResults(response.data.businesses);
-            console.log(response.data.businesses);
+            //console.log(response.data.businesses);
         }catch (err){
             console.log(err);
             setErrorMessage('Something Went Wrong !'); 
@@ -27,7 +27,7 @@ export default ()=>{
     // run searchApi only one time (is first render)
     useEffect(()=>{
         searchApi('pasta'); 
-    }, []);
+    }, []); 
 
     return [searchApi, results, errorMessage];
 };

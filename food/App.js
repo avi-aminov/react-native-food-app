@@ -4,11 +4,13 @@ import { createStackNavigator } from 'react-navigation-stack';
 import SearchScreen from './src/screens/SearchScreen';
 
 import ResultShowScreen from './src/screens/ResultShowScreen';
+import ReviewsShowScreen from './src/screens/ReviewsShowScreen';
 
 
 const navigator = createStackNavigator({
   Search: SearchScreen,
   ResultShow: ResultShowScreen,
+  Reviews: ReviewsShowScreen,
 },{
   initialRouteName: 'Search',
   defaultNavigationOptions: {

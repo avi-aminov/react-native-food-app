@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, FlatList, Image } from 'react-native';
 import yelp from '../api/yelp';
 
+import { FontAwesome } from '@expo/vector-icons';
 import DrawStars from '../components/DrawStars';
 
 const ResultShowScreen = ({navigation}) => {
@@ -11,15 +12,15 @@ const ResultShowScreen = ({navigation}) => {
     const getResult = async ()=>{
         try{
             const response = await yelp.get(`/${id}`);
+            //console.log(response.data);
             setResult(response.data);
-        } catch(err) {
+        } catch(err) { 
             console.log(err);
         }
     };
 
     useEffect(()=>{
         getResult(id); 
-       
     }, []);
 
     if(!result){
@@ -30,7 +31,6 @@ const ResultShowScreen = ({navigation}) => {
             <Text style={css.title}>{result.name}</Text>
 
             <View style={css.flexRow}>
-              <Text style={css.retingText} >{result.rating} </Text>
               <DrawStars 
                 stars={result.rating}
                 size={24}
@@ -38,15 +38,25 @@ const ResultShowScreen = ({navigation}) => {
                   marginLeft:10,
                 }}
               />
+
               <Text style={css.retingText}> {result.review_count} Reviews </Text>
+
+              <FontAwesome 
+                  style={css.reviewIcon}
+                  size={30} 
+                  name="eye" 
+                  onPress={()=>{
+                    navigation.navigate('Reviews', {id:id})
+                  }}
+               />
+
+
             </View>
-            
 
             <View style={css.flexRow}>
               <Text style={css.retingText}>{result.price},</Text>
               <Text style={css.retingText}> Categories: {result.categories[0].title}</Text>
             </View>
-
 
             <FlatList
                 horizontal
@@ -71,16 +81,17 @@ const css = StyleSheet.create({
   flexRow: {
     display: 'flex',
     flexDirection: "row",
-    marginHorizontal:10,
     marginBottom:10,
   },
   retingText:{
     fontSize: 20,
+    marginLeft:10,
   },
   image:{
-      height:200,
-      width:300,
+      height:120,
+      width:220,
       margin:5,
+      borderRadius: 10,
   },
   title: {
     marginVertical:10,
@@ -90,6 +101,10 @@ const css = StyleSheet.create({
   },
   stars:{
     marginLeft:15,
+  },
+  reviewIcon:{
+      marginLeft: 20,
+      color: '#DAA520',
   }
 
 });
