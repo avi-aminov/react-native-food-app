@@ -16,7 +16,7 @@ const SearchScreen = ({navigation}) => {
             return result.price === price;
         })
     };
-
+ 
     return (
         <>
             <SearchBar 
@@ -45,8 +45,8 @@ const SearchScreen = ({navigation}) => {
                     results={filterResultByPrice('$$$')}
                 />
             </ScrollView>
+              
 
-            
         </>
             
     );

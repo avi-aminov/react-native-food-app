@@ -25,6 +25,12 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.foodreview.aminov",
+      "versionCode" : 1,
+      "permissions": [],
+      "icon": "./assets/icon.png"
     }
   }
 }
